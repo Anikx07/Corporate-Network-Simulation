@@ -32,7 +32,7 @@ This project demonstrates the design and implementation of a **corporate office 
 
 ## 📐 Network Topology  
 
-![Network Block Diagram](/docs/block diagram.png)  
+![Network Block Diagram](/docs/block%20diagram.png)
 
 ---
 
