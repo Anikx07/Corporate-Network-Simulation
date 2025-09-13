@@ -1,0 +1,19 @@
+enable
+configure terminal
+int gig0/0
+ ip address 192.168.2.2 255.255.255.0
+ no shutdown
+ exit
+int gig0/1
+ ip address 192.168.5.1 255.255.255.0
+ no shutdown
+ exit
+int gig0/2
+ ip address 192.168.9.1 255.255.255.0
+ no shutdown
+ exit
+router ospf 2
+ network 192.168.2.0 0.0.0.255 area 1
+ network 192.168.5.0 0.0.0.255 area 1
+ network 192.168.9.0 0.0.0.255 area 1
+end

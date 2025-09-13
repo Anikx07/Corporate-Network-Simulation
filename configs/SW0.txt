@@ -1,0 +1,19 @@
+enable
+configure terminal
+vlan 20
+ name Anik20A
+ exit
+vlan 40
+ name Anik40B
+ exit
+int range fa0/1-2
+ switchport mode access
+ switchport access vlan 20
+ exit
+int fa0/3
+ switchport mode access
+ switchport access vlan 40
+ exit
+int gig0/1
+ switchport mode trunk
+end

@@ -1,0 +1,25 @@
+enable
+configure terminal
+int gig0/0
+ ip address 192.168.3.2 255.255.255.0
+ no shutdown
+ exit
+int gig0/1
+ ip address 192.168.4.1 255.255.255.0
+ no shutdown
+ exit
+int gig0/2.10
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+ exit
+int gig0/2.20
+ encapsulation dot1Q 20
+ ip address 192.168.11.1 255.255.255.0
+ ip helper-address 192.168.8.2
+ exit
+router ospf 4
+ network 192.168.3.0 0.0.0.255 area 1
+ network 192.168.4.0 0.0.0.255 area 1
+ network 192.168.10.0 0.0.0.255 area 1
+ network 192.168.11.0 0.0.0.255 area 1
+end

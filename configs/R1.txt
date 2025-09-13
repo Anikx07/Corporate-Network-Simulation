@@ -1,0 +1,40 @@
+enable
+configure terminal
+int gig0/0
+ no ip address
+ no shutdown
+ exit
+int gig0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.0.1 255.255.255.0
+ exit
+int gig0/0.40
+ encapsulation dot1Q 40
+ ip address 192.168.1.1 255.255.255.0
+ exit
+int gig0/1
+ ip address 192.168.2.1 255.255.255.0
+ no shutdown
+ exit
+int gig0/2
+ ip address 192.168.3.1 255.255.255.0
+ no shutdown
+ exit
+ip dhcp pool vlan20A
+ network 192.168.0.0 255.255.255.0
+ default-router 192.168.0.1
+ dns-server 192.168.8.2
+ exit
+ip dhcp pool vlan40B
+ network 192.168.1.0 255.255.255.0
+ default-router 192.168.1.1
+ dns-server 192.168.8.2
+ exit
+ip dhcp excluded-address 192.168.0.1
+ip dhcp excluded-address 192.168.1.1
+router ospf 1
+ network 192.168.0.0 0.0.0.255 area 1
+ network 192.168.1.0 0.0.0.255 area 1
+ network 192.168.2.0 0.0.0.255 area 1
+ network 192.168.3.0 0.0.0.255 area 1
+end
